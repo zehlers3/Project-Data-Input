@@ -79,6 +79,7 @@ function addMethod() {
         const methods = formData.getAll('method[]');
         const runs = formData.getAll('runs[]').map(Number);
         const testLocations = formData.getAll('testLocations[]').map(Number);
+	const methodsString = methods.join(', ');
 
         let ds004 = 0; ds005 = 0; ds005a = 0; ds036 = 0; ds010 = 0; ds008 = 0; ds009 = 0; ds016 = 0; ds041 = 0; ds001 = 0; ds015 = 0; ds015a = 0; ds029 = 0; ds031 = 0; ds030 = 0; ds028 = 0; ds027 = 0; ds026 = 0; ds047 = 0; ds023 = 0; ds024 = 0; ds011a = 0; ds012b = 0; ds005c = 0; ds017 = 0; ds018 = 0; ds019 = 0; ds020 = 0; ds002 = 0; ds021 = 0; ds011 = 0; ds012 = 0; ds012a = 0; ds045 = 0; ds005b = 0
         methods.forEach((method, i) => {
@@ -395,7 +396,8 @@ function addMethod() {
             ["Project Name:", clientName],
             ["Test Location:", location],
             ["Project Departure Date:", startDate],
-            [], // Empty row for spacing
+	    ["Methods:", methodsString],
+            [], 
             ["Data Sheets:", "Quanity:"],
 	    ["ds001", ds001],
 	    ["ds002", ds002],
@@ -436,8 +438,7 @@ function addMethod() {
 	 ws['!cols'] = [
         {wch: 20}, // Width of column A
         {wch: 20}, // Width of column B
-        // Define other column widths if necessary
-    ];
+       ];
         XLSX.utils.book_append_sheet(wb, ws, ws_name);
         XLSX.writeFile(wb, 'ProjectData.xlsx');
     }
